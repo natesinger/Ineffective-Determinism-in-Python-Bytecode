@@ -25,7 +25,6 @@ Python 3.10.4
 └─$ uname -a     
 Linux kali 5.14.0-kali4-amd64 #1 SMP Debian 5.14.16-1kali1 (2021-11-05) x86_64 GNU/Linux
 ```
-
 ### Python PYC Header Comparison
 In the following code segments you can find the first 16 bytes of the headers for each associated file. Note that the malicous python bytecode file header matches the SimHash signature in the unchanged original python bytecode. This bytecode is never validated and therefor executes instead of the target source.
 ```
@@ -40,14 +39,12 @@ In the following code segments you can find the first 16 bytes of the headers fo
 00000000: 6f0d 0d0a 0000 0000 397f 8d62 2d00 0000  o.......9..b-...
 ```
 *<center>some_import.cpython-310.pyc (Exploit Modified PYC)</center>*
-
 ### Exploitation
 In the following gif you may observe a demonstration of exploiting this vulnerability. Note that the example.py code and associated library do not include any reference to the malicious injection. The malicious bytecode injected in this case pop a system calculator to demonstrate code execution. A simple python reverse shell or any other payload would work in its place.
 
 ![gif](.rsrc/exploit.gif)
 
 The python interpreter does not sufficiently verify that a pyc file represents the target source code, resulting in complete integrity compromise at runtime. This bug allows an attacker to instrument or inject Python bytecode to achieve a malicious goal like extracting user secrets or control by reverse shell.
-
 ## Vulnerability Description
 Python intends for bytecode to be deterministic by validating that the SipHash of the executed source matches the 5-8 byte value stored in position 8-16 of the pyc header. The following code is responsible for the associated functions. The function documentation is located at:
 *<center>https://docs.python.org/3/library/importlib.html#importlib.util.source_hash</center>*
@@ -93,5 +90,3 @@ Here is the reddit thread mentioned:
 Here are the two articles describing potential problems in PEP 552:
 - http://benno.id.au/blog/2013/01/15/python-determinism
 - https://bugzilla.opensuse.org/show_bug.cgi?id=1049186
-
-While this may be a performance hit, it only needs to happy when the library is initially loaded into memory and for a majority of imports can happen upon available cycles.
