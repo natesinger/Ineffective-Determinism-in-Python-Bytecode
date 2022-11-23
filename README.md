@@ -3,9 +3,9 @@
 
 ## Disclosure & Scope
 **Author:** Nathaniel Singer (nathaniel@singer.cloud)<br>
-**Scope:** Python 3.7.0 - 3.10.0 (currently unpatched)<br>
+**Scope:** Python 3.7.0 - (currently unpatched)<br>
 **Disclosure:** 24 May 2022<br>
-**Remediation:** NLT 24 August 2022 (currently unpatched) 
+**Remediation (or Disclosure):** NLT 24 August 2022 
 
 This report will adhere to the industry standard 90 day release policy. The author won't release technical details of this vulnerability for 30 days so long as the vendor patches it prior to the 90-day deadline. The 30-day period is intended for user patch adoption. This policy exists to provide awareness to the public so that those individuals may sufficiently mitigate in order to protect themselves, if they so choose.
 
